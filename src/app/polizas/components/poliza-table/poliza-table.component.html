@@ -1,0 +1,39 @@
+<div *ngIf="polizas.length === 0; else table" class="alert alert-warning text-center">
+    No hay pólizas que mostrar
+</div>
+
+<ng-template #table>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Tipo de póliza</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de expiración</th>
+                <th>Monto asegurado</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let poliza of polizas; let i = index">
+                <td>{{ i +1 }}</td>
+                <td>{{ poliza.id }}</td>
+                <td>
+                    {{ poliza.tipoPoliza}}
+                </td>
+                <td>
+                    {{ poliza.fechaInicio | date:'dd/MM/yyyy' }}
+                </td>
+                <td>{{ poliza.fechaExpiracion | date:'dd/MM/yyyy' }}</td>
+                <td>{{ poliza.montoAsegurado | currency:'MXN':'symbol':'1.2-2'}}</td>
+                <td>
+                    <a [routerLink]="[ '/polizas/by/', poliza.id ]">Asociar a un cliente</a>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</ng-template>
