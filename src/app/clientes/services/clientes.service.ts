@@ -23,5 +23,13 @@ export class ClientesService {
             catchError(() => of(null as any)) // Return null on error, avoid empty of()
         );
     }
+
+    consultarClienteById( id: number): Observable<Cliente>{
+        const url = `${this.apiUrl}/${id}`;
+        return this.httpClient.get<Cliente>( url )
+            .pipe( 
+                catchError( () => of(null as any) )
+            );
+    }
     
 }
