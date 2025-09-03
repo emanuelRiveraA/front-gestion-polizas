@@ -4,7 +4,7 @@ import { PolizasPageComponent } from './pages/polizas-page/polizas-page.componen
 
 const routes: Routes = [
     {
-        path: 'polizas',
+        path: '',
         component: PolizasPageComponent
     },
     {
