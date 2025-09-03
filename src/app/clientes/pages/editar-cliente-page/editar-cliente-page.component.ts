@@ -13,6 +13,7 @@ export class EditarClientePageComponent implements OnInit {
 
   registroForm!: FormGroup;
   cliente?: Cliente;
+  clienteID?: number;
 
   constructor(
     private fb: FormBuilder,
@@ -41,21 +42,22 @@ export class EditarClientePageComponent implements OnInit {
       nombreCompleto: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.pattern(/^[0-9]{7,15}$/)]],
-      direccion: ['']
+      direccion: ['',Validators.required]
     });
   }
 
   onSubmit() {
     if (this.registroForm.valid) {
-      const cliente: Cliente = this.registroForm.value;
-      console.log('Datos del formulario:', cliente);
+      const clienteForm: Cliente = this.registroForm.value;
+      console.log('Datos del formulario:', clienteForm);
       // Aquí se llama al servicio para registrar cliente
-      this.clienteService.registrarCliente(cliente)
+      this.clienteID = this.cliente?.id;
+      this.clienteService.editarCliente(clienteForm, this.clienteID)
         .subscribe({
           next: (response) => {
             if (response && response.id) {
               console.log("Registro exitoso:", response);
-              // Optionally reset form or navigate
+              // reedireccionar
             } else {
               console.error("Registro fallido: respuesta inválida");
             }
