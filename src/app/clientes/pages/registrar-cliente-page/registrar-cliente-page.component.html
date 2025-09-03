@@ -3,9 +3,9 @@
 
 <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
   <div class="mb-3">
-    <label for="identificacion" class="form-label">Número de identificación</label>
-    <input type="text" id="identificacion" formControlName="identificacion" class="form-control" required>
-    <div *ngIf="registroForm.get('identificacion')?.invalid && registroForm.get('identificacion')?.touched" class="text-danger">
+    <label for="numeroIdentificacion" class="form-label">Número de identificación</label>
+    <input type="text" id="numeroIdentificacion" formControlName="numeroIdentificacion" class="form-control" required>
+    <div *ngIf="registroForm.get('numeroIdentificacion')?.invalid && registroForm.get('numeroIdentificacion')?.touched" class="text-danger">
       La identificación es requerida.
     </div>
   </div>
