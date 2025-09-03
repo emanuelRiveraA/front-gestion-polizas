@@ -1,0 +1,15 @@
+<h2>Lista de Clientes</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <!-- Tabla de resultados -->
+        <!-- <hr> -->
+         <!-- <ul>
+            <li *ngFor="let cliente of clientes">
+                {{ cliente.nombreCompleto }} - {{ cliente.numeroIdentificacion}}
+            </li>
+         </ul> -->
+         <clientes-cliente-table [clientes]="clientes"></clientes-cliente-table>
+    </div>
+</div>
