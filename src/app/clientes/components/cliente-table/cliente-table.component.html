@@ -1,0 +1,43 @@
+<div *ngIf="clientes.length === 0; else table" class="alert alert-warning text-center">
+    No hay clientes que mostrar
+</div>
+
+<ng-template #table>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Numero Identificación</th>
+                <th>Nombre Completo</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Dirección</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes; let i = index">
+                <td>{{ i +1 }}</td>
+                <td>{{ cliente.id }}</td>
+                <td>
+                    {{ cliente.numeroIdentificacion}}
+                </td>
+                <td>
+                    {{ cliente.nombreCompleto }}
+                </td>
+                <td>{{ cliente.correo }}</td>
+                <td>{{ cliente.telefono }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>
+                    <a [routerLink]="[ '/clientes/by/', cliente.id ]">Editar</a>
+                </td>
+                <td>
+                    <a href="#">eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</ng-template>
