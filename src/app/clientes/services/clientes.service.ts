@@ -16,5 +16,12 @@ export class ClientesService {
                 catchError( () => of([]) )
             );
     }
+
+    registrarCliente(cliente: Cliente): Observable<Cliente> {
+        return this.httpClient.post<Cliente>(this.apiUrl, cliente) // Pass cliente in POST body
+        .pipe(
+            catchError(() => of(null as any)) // Return null on error, avoid empty of()
+        );
+    }
     
 }
