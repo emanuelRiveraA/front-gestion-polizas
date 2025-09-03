@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Cliente } from '../../interfaces/Cliente.interface';
+import { ClientesService } from '../../services/clientes.service';
 
 @Component({
   selector: 'app-registrar-cliente-page',
@@ -10,11 +11,14 @@ export class RegistrarClientePageComponent implements OnInit{
 
   registroForm!: FormGroup;
 
-  constructor(private fb: FormBuilder){}
+  constructor(
+    private fb: FormBuilder,
+    private clienteService: ClientesService
+  ){}
 
    ngOnInit() {
     this.registroForm = this.fb.group({
-      identificacion: ['', Validators.required],
+      numeroIdentificacion: ['', Validators.required],
       nombreCompleto: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.pattern(/^[0-9]{7,15}$/)]],
@@ -24,9 +28,23 @@ export class RegistrarClientePageComponent implements OnInit{
 
   onSubmit() {
     if (this.registroForm.valid) {
-      const datos: Cliente = this.registroForm.value;
-      console.log('Datos del formulario:', datos);
-      // Aquí puedes llamar a un servicio para guardar los datos, etc.
+      const cliente: Cliente = this.registroForm.value;
+      console.log('Datos del formulario:', cliente);
+      // Aquí se llama al servicio para registrar cliente
+      this.clienteService.registrarCliente(cliente)
+        .subscribe({
+          next: (response) => {
+            if (response && response.id) {
+              console.log("Registro exitoso:", response);
+              // Optionally reset form or navigate
+            } else {
+              console.error("Registro fallido: respuesta inválida");
+            }
+          },
+          error: (err) => {
+            console.error("Error al registrar cliente:", err);
+          }
+        });
     } else {
       console.log('Formulario inválido');
       this.registroForm.markAllAsTouched(); // Para mostrar errores
