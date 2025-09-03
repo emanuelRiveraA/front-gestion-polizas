@@ -18,9 +18,9 @@ export class ClientesService {
     }
 
     registrarCliente(cliente: Cliente): Observable<Cliente> {
-        return this.httpClient.post<Cliente>(this.apiUrl, cliente) // Pass cliente in POST body
+        return this.httpClient.post<Cliente>(this.apiUrl, cliente) // pasar cliente en POST body
         .pipe(
-            catchError(() => of(null as any)) // Return null on error, avoid empty of()
+            catchError(() => of(null as any)) // retorna null por error, evitar vacio of()
         );
     }
 
@@ -30,6 +30,14 @@ export class ClientesService {
             .pipe( 
                 catchError( () => of(null as any) )
             );
+    }
+
+    editarCliente(cliente: Cliente, id?: number): Observable<Cliente> {
+        const url = `${this.apiUrl}/${id}`;
+        return this.httpClient.put<Cliente>(url, cliente) 
+        .pipe(
+            catchError(() => of(null as any)) 
+        );
     }
     
 }
