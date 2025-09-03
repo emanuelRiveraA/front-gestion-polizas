@@ -11,6 +11,14 @@ const routes: Routes = [
     {
         path: 'about',
         component: AboutPageComponent
+    },
+    {
+        path: 'clientes',
+        loadChildren: () => import('./clientes/clientes.module').then( modulo => modulo.ClientesModule)
+    },
+    {
+        path: '**',
+        redirectTo: ''
     }
 ]
 
