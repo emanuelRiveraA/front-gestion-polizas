@@ -6,6 +6,7 @@ import { EditarClientePageComponent } from './pages/editar-cliente-page/editar-c
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { ClienteTableComponent } from './components/cliente-table/cliente-table.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -18,8 +19,12 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ClientesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
     
+  ],
+  exports: [
+    ClienteTableComponent
   ]
 })
 export class ClientesModule { }
