@@ -1,0 +1,82 @@
+<h2>Asociar Poliza a Cliente</h2>
+<hr>
+
+<form>
+    <div class="row">
+         <div class="col-4">
+            <label for="tipoPoliza" class="form-label">Tipo de Póliza</label>
+            <input type="text" id="tipoPoliza" class="form-control" [value]="poliza?.tipoPoliza" disabled>
+        </div>
+
+        <div class="col-4">
+            <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+            <input type="text" id="fechaInicio" class="form-control" [value]="poliza?.fechaInicio"  disabled>
+        </div>
+
+        <div class="col-4">
+            <label for="fechaExpiracion" class="form-label">Fecha Expiración</label>
+            <input type="text" id="fechaExpiracion" class="form-control" [value]="poliza?.fechaExpiracion"  disabled>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label for="montoAsegurado" class="form-label">Monto Asegurado</label>
+            <input type="text" id="montoAsegurado" class="form-control" [value]="poliza?.montoAsegurado | currency:'MXN':'symbol':'1.2-2'"  disabled>
+        </div>
+
+        <div class="col-6">
+            <label for="estado" class="form-label">Estado</label>
+            <input type="text" id="estado" class="form-control" [value]="poliza?.estado"  disabled>
+        </div>
+    </div>
+</form>
+
+<hr>
+
+<div class="row">
+    <div class="col">
+        <!-- searchBox -->
+        <shared-search-box
+        placeholder="Buscar por nombre, correo o número de identificación"
+        (onValue)="buscarPorFiltro($event)"
+        ></shared-search-box>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <hr>
+        <!-- Tabla de resultados -->
+        <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Numero Identificación</th>
+                <th>Nombre Completo</th>
+                <th>Polizas Actuales</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes; let i = index">
+                <td>{{ i +1 }}</td>
+                <td>{{ cliente.numeroIdentificacion }}</td>
+                <td>{{ cliente.nombreCompleto }}</td>
+                <td>
+                    <ul style="font-size: 15px;">
+                        <li *ngFor="let poliza of cliente.polizas">
+                              {{ poliza.id }} -  {{ poliza.tipoPoliza }}  -  {{ poliza.fechaInicio }} - {{ poliza.fechaExpiracion }}
+                        </li>
+                    </ul>                  
+                </td>
+                <td>
+                    <button class="btn btn-primary" (click)="asociarClienteAPoliza(cliente.id)">Asociar a este cliente</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+    </div>
+</div>
+
