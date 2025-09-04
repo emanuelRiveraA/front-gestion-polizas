@@ -2,4 +2,6 @@
 class="form-control"
 type="text" 
 [placeholder]="placeholder"
+(keyup.enter)="emitValue( txtInput.value )"
+#txtInput
 >
