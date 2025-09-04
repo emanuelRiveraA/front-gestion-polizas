@@ -23,4 +23,11 @@ export class ClientesPageComponent implements OnInit{
       });
   }
 
+  buscarPorFiltro( input: string): void {
+     this.clienteService.buscarPorFiltro(input)
+      .subscribe( clientes => {
+        this.clientes = clientes;
+      });
+  }
+
 }
