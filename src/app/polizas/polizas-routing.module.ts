@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PolizasPageComponent } from './pages/polizas-page/polizas-page.component';
+import { AsociarPolizaPageComponent } from './pages/asociar-poliza-page/asociar-poliza-page.component';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'polizas',
         component: PolizasPageComponent
     },
     {
         path: 'by/:id',
-        component: PolizasPageComponent
+        component: AsociarPolizaPageComponent
     },
     {
         path: '**',
