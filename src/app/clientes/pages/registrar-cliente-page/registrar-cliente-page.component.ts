@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Cliente } from '../../interfaces/Cliente.interface';
 import { ClientesService } from '../../services/clientes.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-cliente-page',
@@ -12,6 +13,8 @@ export class RegistrarClientePageComponent implements OnInit{
   registroForm!: FormGroup;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
     private clienteService: ClientesService
   ){}
@@ -36,7 +39,8 @@ export class RegistrarClientePageComponent implements OnInit{
           next: (response) => {
             if (response && response.id) {
               console.log("Registro exitoso:", response);
-              // Optionally reset form or navigate
+              // reedireccionar
+              this.router.navigateByUrl('clientes/clientes');
             } else {
               console.error("Registro fallido: respuesta inválida");
             }

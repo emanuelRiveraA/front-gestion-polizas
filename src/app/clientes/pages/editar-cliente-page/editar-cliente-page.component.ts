@@ -58,6 +58,7 @@ export class EditarClientePageComponent implements OnInit {
             if (response && response.id) {
               console.log("Registro exitoso:", response);
               // reedireccionar
+              this.router.navigateByUrl('clientes/clientes');
             } else {
               console.error("Registro fallido: respuesta inválida");
             }
