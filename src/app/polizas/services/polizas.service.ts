@@ -17,5 +17,19 @@ export class PolizasService {
             );
     }
 
+    consultarPolizaById(id: number): Observable<Poliza> {
+        const url = `${this.apiUrl}/${id}`;
+        return this.httpClient.get<Poliza>(url)
+            .pipe(
+                catchError(() => of(null as any))
+            );
+    }
     
+    buscarPorFiltro(input: string): Observable<Poliza> {
+        const url = `${this.apiUrl}?filtro=${input}`;
+        return this.httpClient.get<Poliza>(url)
+            .pipe(
+                catchError(() => of(null as any))
+            );
+    }
 }
