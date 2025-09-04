@@ -14,7 +14,7 @@
                 <th>Fecha de expiración</th>
                 <th>Monto asegurado</th>
                 <th>Estado</th>
-                <th></th>
+                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -29,8 +29,9 @@
                 </td>
                 <td>{{ poliza.fechaExpiracion | date:'dd/MM/yyyy' }}</td>
                 <td>{{ poliza.montoAsegurado | currency:'MXN':'symbol':'1.2-2'}}</td>
+                <td>{{ poliza.estado }}</td>
                 <td>
-                    <a [routerLink]="[ '/polizas/by/', poliza.id ]">Asociar a un cliente</a>
+                    <a [routerLink]="[ '/polizas/by/', poliza.id ]">Editar</a>
                 </td>
             </tr>
         </tbody>
